@@ -13,7 +13,7 @@ RSI_OVERBOUGHT = 70
 RSI_OVERSOLD = 30
 TRADE_SYMBOL = settings.TRADE_SYMBOL
 SOCKET = settings.WS_URL
-TRADE_QUANTITY = 0.05
+TRADE_QUANTITY = settings.TRADE_QUANTITY
 
 closes = []
 in_position = False
