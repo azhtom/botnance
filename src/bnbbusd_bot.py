@@ -140,10 +140,10 @@ def go_trade():
 
 
 def run():
-    #time.sleep(settings.DELAY)
+    time.sleep(settings.DELAY)
     print("do it")
     go_trade()
-    #run()
+    run()
 
 
 if __name__ == '__main__':
