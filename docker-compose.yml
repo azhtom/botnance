@@ -12,3 +12,14 @@ services:
       - ./src:/usr/src/app
     env_file:
       - .env
+  bnb_eat:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    command: bash -c "python bnbbusd_bot.py"
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./src:/usr/src/app
+    env_file:
+      - .env

@@ -18,7 +18,7 @@ TRADE_QUANTITY = settings.TRADE_QUANTITY
 closes = []
 in_position = False
 
-client = Client(settings.API_KEY, settings.API_SECRET, tld='us')
+client = Client(settings.API_KEY, settings.API_SECRET, tld='com')
 
 
 def order(side, quantity, symbol, order_type=ORDER_TYPE_MARKET):
