@@ -19,7 +19,7 @@ QUOTE_ASSET = 'BUSD'
 BUY_ALLOCATION = 0.5
 SELL_ALLOCATION = 0.15
 SELL_SPREAD = 0.01
-BUY_SPREAD = 0.005
+BUY_SPREAD = 0.002
 TICK_INTERVAL = 2000  # In seconds
 
 client = Client(settings.API_KEY, settings.API_SECRET, tld='com')
@@ -122,7 +122,7 @@ def go_trade():
             sell_data = {
                 'symbol': f'{ASSET}{QUOTE_ASSET}',
                 'quantity': "{:0.0{}f}".format(sell_volume, 2),
-                'price': "{:0.0{}f}".format(sell_price, symbol_info.get('quotePrecision')),
+                'price': "{:0.0{}f}".format(sell_price, 2),
             }
 
             order_limit(SELL_ORDER, sell_data)
@@ -133,17 +133,17 @@ def go_trade():
             buy_data = {
                 'symbol': f'{ASSET}{QUOTE_ASSET}',
                 'quantity': "{:0.0{}f}".format(buy_volume, 2),
-                'price': "{:0.0{}f}".format(buy_price, symbol_info.get('quotePrecision')),
+                'price': "{:0.0{}f}".format(buy_price, 2),
             }
 
             order_limit(BUY_ORDER, buy_data)
 
 
 def run():
-    time.sleep(settings.DELAY)
+    #time.sleep(settings.DELAY)
     print("do it")
     go_trade()
-    run()
+    #run()
 
 
 if __name__ == '__main__':
