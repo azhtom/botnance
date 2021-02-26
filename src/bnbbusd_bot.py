@@ -18,7 +18,7 @@ ASSET = 'BNB'
 QUOTE_ASSET = 'BUSD'
 BUY_ALLOCATION = 0.5
 SELL_ALLOCATION = 0.15
-SELL_SPREAD = 0.01
+SELL_SPREAD = 0.001
 BUY_SPREAD = 0.002
 TICK_INTERVAL = 2000  # In seconds
 
@@ -140,10 +140,10 @@ def go_trade():
 
 
 def run():
-    time.sleep(settings.DELAY)
+    #time.sleep(settings.DELAY)
     print("do it")
     go_trade()
-    run()
+    #run()
 
 
 if __name__ == '__main__':
