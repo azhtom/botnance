@@ -10,7 +10,7 @@ client = Client(settings.API_KEY, settings.API_SECRET, tld='com')
 SYMBOL_TICKER = 'DOGEBUSD'
 QUANTITY_ORDERS = 200
 KLINES_INTERVAL = '18 hour ago UTC'
-DECIMAL_PLACE = 4
+DECIMAL_PLACE = 6
 
 
 def get_klines():
@@ -64,17 +64,14 @@ def media50():
 
 while True:
     orders = client.get_open_orders(symbol=SYMBOL_TICKER)
-    symbol_price = None
 
     if len(orders) != 0:
         print("THERE IS OPEN ORDERS")
         time.sleep(10)
         continue
 
-    list_of_tickers = client.get_all_tickers()
-    for tick_2 in list_of_tickers:
-        if tick_2['symbol'] == SYMBOL_TICKER:
-            symbol_price = float(tick_2['price'])
+    last_trader = client.get_recent_trades(symbol=SYMBOL_TICKER, limit=1)
+    symbol_price = float(last_trader[0].get('price'))
 
     ma50 = media50()
     if ma50 == 0:
@@ -98,13 +95,17 @@ while True:
             print("BUY")
 
             order = client.order_market_buy(
-                symbol=SYMBOL_TICKER,
-                quantity=QUANTITY_ORDERS
+               symbol=SYMBOL_TICKER,
+               quantity=QUANTITY_ORDERS
             )
 
             time.sleep(5)
 
             print("OCO")
+
+            print(round(symbol_price * 1.02, DECIMAL_PLACE))
+            print(round(symbol_price * 0.995, DECIMAL_PLACE))
+            print(round(symbol_price * 0.994, DECIMAL_PLACE))
 
             orderOCO = client.order_oco_sell(
                 symbol=SYMBOL_TICKER,
